@@ -1,0 +1,115 @@
+
+CREATE TABLE member (
+    member_key NUMBER PRIMARY KEY, -- 회원 고유 식별키 (시퀀스로 생성)
+    member_id VARCHAR2(50) UNIQUE NOT NULL, -- 회원 아이디 (고유하며 중복되지 않음)
+    member_pwd VARCHAR2(100) NOT NULL, -- 회원 비밀번호
+    member_name VARCHAR2(100), -- 회원 이름
+    member_gender VARCHAR2(10) CHECK(member_gender IN ('남성', '여성')), -- 회원 성별
+    member_birth DATE, -- 회원 생년월일
+    member_addr VARCHAR2(255), -- 회원 주소
+    member_phone VARCHAR2(20), -- 회원 연락처
+    member_email VARCHAR2(100), -- 회원 이메일 주소
+    member_image VARCHAR2(100), -- 회원 사진 (바이너리 데이터)
+    member_dept VARCHAR2(100), -- 직원이 속한 부서 또는 팀
+    member_position VARCHAR2(100), -- 직원의 직급 또는 직책
+    member_start_date DATE, -- 직원의 입사일
+    member_end_date DATE, -- 직원의 퇴사일
+    member_status VARCHAR2(10) CHECK(member_status IN ('근무', '퇴직', '휴직')), -- 직원의 근무 상태
+    member_memo VARCHAR2(255) -- 특이사항
+    
+);
+
+INSERT INTO member (member_key, member_id, member_pwd, member_name, member_gender, member_birth, member_addr, member_phone, member_email, member_image, member_dept, member_position, member_start_date, member_end_date, member_status, member_memo)
+VALUES (1, 'johndoe', 'password123', '홍길동', '남성', TO_DATE('1990-05-15', 'YYYY-MM-DD'), '서울시 강남구', '010-1234-5678', 'johndoe@example.com', NULL, '개발팀', '사원', TO_DATE('2020-01-10', 'YYYY-MM-DD'), NULL, '근무', NULL);
+
+-- 박지영
+INSERT INTO member (member_key, member_id, member_pwd, member_name, member_gender, member_birth, member_addr, member_phone, member_email, member_image, member_dept, member_position, member_start_date, member_end_date, member_status, member_memo)
+VALUES (2, 'janedoe', 'jane456', '박지영', '여성', TO_DATE('1988-08-25', 'YYYY-MM-DD'), '서울시 서초구', '010-9876-5432', 'janedoe@example.com', NULL, '마케팅팀', '주임', TO_DATE('2019-03-20', 'YYYY-MM-DD'), NULL, '근무', NULL);
+
+-- 김수진
+INSERT INTO member (member_key, member_id, member_pwd, member_name, member_gender, member_birth, member_addr, member_phone, member_email, member_image, member_dept, member_position, member_start_date, member_end_date, member_status, member_memo)
+VALUES (3, 'alice92', 'alice789', '김수진', '여성', TO_DATE('1992-11-03', 'YYYY-MM-DD'), '인천시 남동구', '010-5678-1234', 'alice92@example.com', NULL, '영업팀', '대리', TO_DATE('2021-07-05', 'YYYY-MM-DD'), NULL, '근무', NULL);
+
+-- 이상호
+INSERT INTO member (member_key, member_id, member_pwd, member_name, member_gender, member_birth, member_addr, member_phone, member_email, member_image, member_dept, member_position, member_start_date, member_end_date, member_status, member_memo)
+VALUES (4, 'bob87', 'bob456', '이상호', '남성', TO_DATE('1987-04-20', 'YYYY-MM-DD'), '경기도 용인시', '010-8765-4321', 'bob87@example.com', NULL, '인사팀', '과장', TO_DATE('2018-09-15', 'YYYY-MM-DD'), NULL, '근무', NULL);
+
+-- 박미영
+INSERT INTO member (member_key, member_id, member_pwd, member_name, member_gender, member_birth, member_addr, member_phone, member_email, member_image, member_dept, member_position, member_start_date, member_end_date, member_status, member_memo)
+VALUES (5, 'emily77', 'emily123', '박미영', '여성', TO_DATE('1977-12-10', 'YYYY-MM-DD'), '부산시 해운대구', '010-2345-6789', 'emily77@example.com', NULL, '기획팀', '차장', TO_DATE('2017-06-30', 'YYYY-MM-DD'), TO_DATE('2021-06-30', 'YYYY-MM-DD'), '퇴직', NULL);
+
+-- 최영식
+INSERT INTO member (member_key, member_id, member_pwd, member_name, member_gender, member_birth, member_addr, member_phone, member_email, member_image, member_dept, member_position, member_start_date, member_end_date, member_status, member_memo)
+VALUES (6, 'david88', 'david1234', '최영식', '남성', TO_DATE('1988-09-05', 'YYYY-MM-DD'), '대구시 중구', '010-3456-7890', 'david88@example.com', NULL, '개발팀', '부장', TO_DATE('2016-02-20', 'YYYY-MM-DD'), NULL, '근무', NULL);
+
+-- 김예림
+INSERT INTO member (member_key, member_id, member_pwd, member_name, member_gender, member_birth, member_addr, member_phone, member_email, member_image, member_dept, member_position, member_start_date, member_end_date, member_status, member_memo)
+VALUES (7, 'lisa99', 'lisa5678', '김예림', '여성', TO_DATE('1999-07-20', 'YYYY-MM-DD'), '대전시 서구', '010-6789-1234', 'lisa99@example.com', NULL, '영업팀', '사원', TO_DATE('2020-11-10', 'YYYY-MM-DD'), TO_DATE('2021-11-10', 'YYYY-MM-DD'), '퇴직', NULL);
+
+-- 박성호
+INSERT INTO member (member_key, member_id, member_pwd, member_name, member_gender, member_birth, member_addr, member_phone, member_email, member_image, member_dept, member_position, member_start_date, member_end_date, member_status, member_memo)
+VALUES (8, 'alexander', 'alex1234', '박성호', '남성', TO_DATE('1995-03-18', 'YYYY-MM-DD'), '광주시 동구', '010-7890-5678', 'alexander@example.com', NULL, '기획팀', '대리', TO_DATE('2019-01-25', 'YYYY-MM-DD'), NULL, '퇴직', NULL);
+
+-- 송민호
+INSERT INTO member (member_key, member_id, member_pwd, member_name, member_gender, member_birth, member_addr, member_phone, member_email, member_image, member_dept, member_position, member_start_date, member_end_date, member_status, member_memo)
+VALUES (9, 'minho82', 'minho567', '송민호', '남성', TO_DATE('1982-03-24', 'YYYY-MM-DD'), '서울시 영등포구', '010-9012-3456', 'minho82@example.com', NULL, '기술지원팀', '사원', TO_DATE('2016-09-15', 'YYYY-MM-DD'), NULL, '근무', NULL);
+
+-- 김하늘
+INSERT INTO member (member_key, member_id, member_pwd, member_name, member_gender, member_birth, member_addr, member_phone, member_email, member_image, member_dept, member_position, member_start_date, member_end_date, member_status, member_memo)
+VALUES (10, 'haneul88', 'haneul123', '김하늘', '여성', TO_DATE('1988-12-07', 'YYYY-MM-DD'), '경기도 고양시', '010-3456-7890', 'haneul88@example.com', NULL, '개발팀', '대리', TO_DATE('2017-10-20', 'YYYY-MM-DD'), NULL, '근무', NULL);
+
+-- 이준호
+INSERT INTO member (member_key, member_id, member_pwd, member_name, member_gender, member_birth, member_addr, member_phone, member_email, member_image, member_dept, member_position, member_start_date, member_end_date, member_status, member_memo)
+VALUES (11, 'junho95', 'junho456', '이준호', '남성', TO_DATE('1995-05-19', 'YYYY-MM-DD'), '서울시 송파구', '010-5678-1234', 'junho95@example.com', NULL, '마케팅팀', '주임', TO_DATE('2019-04-25', 'YYYY-MM-DD'), NULL, '근무', NULL);
+
+-- 박나래
+INSERT INTO member (member_key, member_id, member_pwd, member_name, member_gender, member_birth, member_addr, member_phone, member_email, member_image, member_dept, member_position, member_start_date, member_end_date, member_status, member_memo)
+VALUES (12, 'narae89', 'narae567', '박나래', '여성', TO_DATE('1989-08-15', 'YYYY-MM-DD'), '경기도 성남시', '010-7890-5678', 'narae89@example.com', NULL, '영업팀', '대리', TO_DATE('2018-12-10', 'YYYY-MM-DD'), NULL, '근무', NULL);
+
+-- 김태현
+INSERT INTO member (member_key, member_id, member_pwd, member_name, member_gender, member_birth, member_addr, member_phone, member_email, member_image, member_dept, member_position, member_start_date, member_end_date, member_status, member_memo)
+VALUES (13, 'taehyun86', 'taehyun123', '김태현', '남성', TO_DATE('1986-11-02', 'YYYY-MM-DD'), '서울시 강북구', '010-8901-2345', 'taehyun86@example.com', NULL, '인사팀', '사원', TO_DATE('2017-03-15', 'YYYY-MM-DD'), NULL, '근무', NULL);
+
+-- 정다빈
+INSERT INTO member (member_key, member_id, member_pwd, member_name, member_gender, member_birth, member_addr, member_phone, member_email, member_image, member_dept, member_position, member_start_date, member_end_date, member_status, member_memo)
+VALUES (14, 'dabin94', 'dabin567', '정다빈', '여성', TO_DATE('1994-09-30', 'YYYY-MM-DD'), '경기도 광명시', '010-9012-3456', 'dabin94@example.com', NULL, '영업팀', '사원', TO_DATE('2020-08-20', 'YYYY-MM-DD'), NULL, '근무', NULL);
+
+-- 강민재
+INSERT INTO member (member_key, member_id, member_pwd, member_name, member_gender, member_birth, member_addr, member_phone, member_email, member_image, member_dept, member_position, member_start_date, member_end_date, member_status, member_memo)
+VALUES (15, 'minjae91', 'minjae123', '강민재', '남성', TO_DATE('1991-06-08', 'YYYY-MM-DD'), '서울시 동작구', '010-3456-7890', 'minjae91@example.com', NULL, '마케팅팀', '주임', TO_DATE('2018-02-25', 'YYYY-MM-DD'), NULL, '근무', NULL);
+
+-- 이유진
+INSERT INTO member (member_key, member_id, member_pwd, member_name, member_gender, member_birth, member_addr, member_phone, member_email, member_image, member_dept, member_position, member_start_date, member_end_date, member_status, member_memo)
+VALUES (16, 'yujin87', 'yujin567', '이유진', '여성', TO_DATE('1987-03-17', 'YYYY-MM-DD'), '경기도 의정부시', '010-5678-1234', 'yujin87@example.com', NULL, '인사팀', '대리', TO_DATE('2019-07-10', 'YYYY-MM-DD'), NULL, '근무', NULL);
+
+-- 김다솜
+INSERT INTO member (member_key, member_id, member_pwd, member_name, member_gender, member_birth, member_addr, member_phone, member_email, member_image, member_dept, member_position, member_start_date, member_end_date, member_status, member_memo)
+VALUES (17, 'dasom93', 'dasom567', '김다솜', '여성', TO_DATE('1993-10-12', 'YYYY-MM-DD'), '서울시 강동구', '010-9012-3456', 'dasom93@example.com', NULL, '기술지원팀', '주임', TO_DATE('2018-05-20', 'YYYY-MM-DD'), NULL, '근무', NULL);
+
+-- 박준서
+INSERT INTO member (member_key, member_id, member_pwd, member_name, member_gender, member_birth, member_addr, member_phone, member_email, member_image, member_dept, member_position, member_start_date, member_end_date, member_status, member_memo)
+VALUES (18, 'junseo96', 'junseo123', '박준서', '남성', TO_DATE('1996-09-08', 'YYYY-MM-DD'), '경기도 부천시', '010-3456-7890', 'junseo96@example.com', NULL, '기획팀', '사원', TO_DATE('2017-08-25', 'YYYY-MM-DD'), NULL, '근무', NULL);
+
+-- 이서준
+INSERT INTO member (member_key, member_id, member_pwd, member_name, member_gender, member_birth, member_addr, member_phone, member_email, member_image, member_dept, member_position, member_start_date, member_end_date, member_status, member_memo)
+VALUES (19, 'seojun98', 'seojun567', '이서준', '남성', TO_DATE('1998-12-20', 'YYYY-MM-DD'), '서울시 관악구', '010-5678-1234', 'seojun98@example.com', NULL, '영업팀', '대리', TO_DATE('2021-04-10', 'YYYY-MM-DD'), NULL, '근무', NULL);
+
+-- 김다은
+INSERT INTO member (member_key, member_id, member_pwd, member_name, member_gender, member_birth, member_addr, member_phone, member_email, member_image, member_dept, member_position, member_start_date, member_end_date, member_status, member_memo)
+VALUES (20, 'daeun94', 'daeun123', '김다은', '여성', TO_DATE('1994-07-15', 'YYYY-MM-DD'), '경기도 화성시', '010-7890-5678', 'daeun94@example.com', NULL, '마케팅팀', '대리', TO_DATE('2020-02-15', 'YYYY-MM-DD'), NULL, '근무', NULL);
+
+-- 정시현
+INSERT INTO member (member_key, member_id, member_pwd, member_name, member_gender, member_birth, member_addr, member_phone, member_email, member_image, member_dept, member_position, member_start_date, member_end_date, member_status, member_memo)
+VALUES (21, 'sihyun93', 'sihyun567', '정시현', '여성', TO_DATE('1993-05-28', 'YYYY-MM-DD'), '서울시 강서구', '010-9012-3456', 'sihyun93@example.com', NULL, '개발팀', '사원', TO_DATE('2019-06-20', 'YYYY-MM-DD'), NULL, '근무', NULL);
+
+-- 박하윤
+INSERT INTO member (member_key, member_id, member_pwd, member_name, member_gender, member_birth, member_addr, member_phone, member_email, member_image, member_dept, member_position, member_start_date, member_end_date, member_status, member_memo)
+VALUES (22, 'hayoon97', 'hayoon123', '박하윤', '여성', TO_DATE('1997-03-10', 'YYYY-MM-DD'), '서울시 강서구', '010-3456-7890', 'hayoon97@example.com', NULL, '인사팀', '주임', TO_DATE('2018-09-15', 'YYYY-MM-DD'), NULL, '근무', NULL);
+
+-- 김시우
+INSERT INTO member (member_key, member_id, member_pwd, member_name, member_gender, member_birth, member_addr, member_phone, member_email, member_image, member_dept, member_position, member_start_date, member_end_date, member_status, member_memo)
+VALUES (23, 'siwoo96', 'siwoo123', '김시우', '남성', TO_DATE('1996-11-05', 'YYYY-MM-DD'), '경기도 안양시', '010-5678-1234', 'siwoo96@example.com', NULL, '영업팀', '대리', TO_DATE('2017-03-25', 'YYYY-MM-DD'), NULL, '근무', NULL);
+
+-- 이현우
+INSERT INTO member (member_key, member_id, member_pwd, member_name, member_gender, member_birth, member_addr, member_phone, member_email, member_image, member_dept, member_position, member_start_date, member_end_date, member_status, member_memo)
+VALUES (24, 'hyunwoo95', 'hyunwoo567', '이현우', '남성', TO_DATE('1995-08-22', 'YYYY-MM-DD'), '경기도 성남시', '010-7890-5678', 'hyunwoo95@example.com', NULL, '마케팅팀', '주임', TO_DATE('2020-01-10', 'YYYY-MM-DD'), NULL, '근무', NULL);

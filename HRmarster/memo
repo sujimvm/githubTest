@@ -1,0 +1,52 @@
+
+
+
+
+
+
+
+CREATE SEQUENCE member_seq
+    START WITH 1
+    INCREMENT BY 1
+    NOCACHE
+    NOCYCLE;
+
+CREATE OR REPLACE TRIGGER member_trigger
+BEFORE INSERT ON member
+FOR EACH ROW
+BEGIN
+    SELECT member_seq.NEXTVAL INTO :new.member_key FROM dual;
+END;
+
+
+CREATE TABLE commute (
+    commute_key NUMBER PRIMARY KEY, -- 출퇴근 기록 고유 식별키
+    commute_member_key NUMBER, -- 해당 출퇴근 기록이 속한 회원의 고유 식별키 (외래키)
+    FOREIGN KEY (commute_member_key) REFERENCES member(member_key), -- commute_member_key를 member 테이블의 member_key와 연결
+    commute_start_time TIMESTAMP, -- 출근 시간
+    commute_end_time TIMESTAMP, -- 퇴근 시간
+    commute_late_early_count NUMBER, -- 지각 및 조퇴 횟수
+    commute_special_status VARCHAR2(20), -- 특별한 상태 (외근, 휴가, 병가 등)
+    commute_date
+);
+
+CREATE TABLE vacation (
+    vacation_key NUMBER PRIMARY KEY, -- 휴가 기록 고유 식별키
+    vacation_member_key NUMBER, -- 해당 휴가 기록이 속한 회원의 고유 식별키 (외래키)
+    FOREIGN KEY (vacation_member_key) REFERENCES member(member_key), -- vacation_member_key를 member 테이블의 member_key와 연결
+    vacation_type VARCHAR2(20), -- 휴가 종류
+    vacation_start_date DATE, -- 휴가 시작일
+    vacation_end_date DATE, -- 휴가 종료일
+    vacation_status VARCHAR2(10) -- 휴가 신청 상태
+);
+
+CREATE TABLE salary (
+    salary_key NUMBER PRIMARY KEY, -- 급여 기록 고유 식별키
+    salary_member_key NUMBER, -- 해당 급여 기록이 속한 회원의 고유 식별키 (외래키)
+    FOREIGN KEY (salary_member_key) REFERENCES member(member_key), -- salary_member_key를 member 테이블의 member_key와 연결
+    salary_amount NUMBER(10, 2), -- 급여 액수 (10자리 정수, 소수점 2자리)
+    salary_commission NUMBER(10, 2), -- 커미션 액수 (10자리 정수, 소수점 2자리)
+    salary_allowance NUMBER(10, 2), -- 수당 액수 (10자리 정수, 소수점 2자리)
+    salary_date DATE -- 급여 지급일
+);
+
